@@ -167,7 +167,7 @@ class MasaaScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.separated(
-                    itemBuilder: (context1,index)=>buildItem(text: '${azkar[index].text}', num: '${azkar[index].num}', context: context),
+                    itemBuilder: (context1,index)=>buildItem(text: '${azkar[index].text}',index: index, num: '${azkar[index].num}', context: context),
                     separatorBuilder:(context1,index)=> SizedBox(height: 20.0,),
                     itemCount: azkar.length,
                   ),
@@ -183,6 +183,7 @@ class MasaaScreen extends StatelessWidget {
    buildItem ({
   required String text,
   required String num,
+  required int index,
   required BuildContext context,
 })
   {
@@ -228,11 +229,22 @@ class MasaaScreen extends StatelessWidget {
                     ),),
                     Text('${num}',style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18.0
+                        fontSize: 20.0
                     ),),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Icon(Icons.refresh),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                          '${index+1}',style: Theme.of(context).textTheme.caption!.copyWith(
+                          fontSize: 16.0
+                        ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

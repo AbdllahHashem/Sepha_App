@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sapeh/salah_screen.dart';
 import 'package:sapeh/sapah_screen.dart';
 
 import 'masaa_screen.dart';
@@ -34,6 +35,32 @@ class ZekrScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                children: [
+                 Container(
+                   decoration: BoxDecoration(
+                     color: Colors.blue,
+                     borderRadius:BorderRadius.circular(15.0) ,
+                   ),
+                   height: MediaQuery.of(context).size.height*.07,
+                   width: MediaQuery.of(context).size.width*.9,
+                   child: MaterialButton(
+                     onPressed:() {
+                       Navigator.push(context,
+                         MaterialPageRoute(builder: (context)=>SalahScreen()),
+                       );
+                     },
+                     child: Text(
+                       'أذكــــــــــار  بـــعــــد الصــــــــــلاة',
+                       style: TextStyle(
+                           fontSize: 22.0,
+                           fontWeight: FontWeight.bold,
+                           color: Colors.white
+                       ),
+                     ),
+                   ),
+                 ),
+                 SizedBox(
+                   height: 15.0,
+                 ),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.blue,
@@ -83,6 +110,7 @@ class ZekrScreen extends StatelessWidget {
                   ),
                    ),
                   ),
+
                ],
                 ),
             ),

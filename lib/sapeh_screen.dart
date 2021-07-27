@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sapeh/zekr_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SapehScreen extends StatefulWidget {
 
@@ -11,6 +12,32 @@ class SapehScreen extends StatefulWidget {
 class _SapehScreenState extends State<SapehScreen> {
 
   int counter=0;
+  @override
+  void initState()
+  {
+    super.initState();
+    _loadSavedData();
+  }
+
+  _loadSavedData()async{
+    SharedPreferences pref=await SharedPreferences.getInstance();
+    setState(() {
+      if(pref.getInt('counter')!=null)
+        {
+          counter=pref.getInt('counter')!;
+        }
+      else
+        {
+          counter=0;
+        }
+    });
+  }
+
+  _saveData(int count)async
+  {
+    SharedPreferences pref=await SharedPreferences.getInstance();
+    pref.setInt('counter', count);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,14 +182,18 @@ class _SapehScreenState extends State<SapehScreen> {
 
   void incrementCounter()
   {
+
     setState(() {
       counter++;
+      _saveData(counter);
     });
+
   }
   void clearCounter()
   {
     setState(() {
       counter=0;
+      _saveData(counter);
     });
   }
 }
